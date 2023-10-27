@@ -1,0 +1,42 @@
+﻿@model MVCPracticaArqdSoft.Models.ContactModel;
+@{
+    ViewData["Title"] = "Actualizando contacto";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card col-6 mx-auto">
+    <h1 class="card-header"><i class="bi bi-pencil-square"></i> Actualizando a @Model.Name</h1>
+
+    <form asp-controller="Contact" asp-action="UpdateContact" method="post" class="card-body">
+        <input type="hidden" value="@Model.Id" asp-for="Id"/>
+        <div class="mb-3">
+            <label for="name">Nombre:</label>
+            <input type="text" id="name" asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="fs-6 text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label for="phoneNumber">Número de teléfono:</label>
+            <input type="number" id="phoneNumber" asp-for="PhoneNumber" class="form-control" />
+            <span asp-validation-for="PhoneNumber" class="fs-6 text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label for="mail">Correo electrónico:</label>
+            <input type="email" id="mail" asp-for="Email" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label for="passwd">Clave:</label>
+            <input type="password" id="passwd" asp-for="Password" class="form-control" />
+            <span asp-validation-for="Password" class="fs-6 text-danger"></span>
+        </div>
+
+        <div class="d-flex justify-content-between align-items-center">
+            <a type="button" class="btn btn-primary" asp-controller="Contact" asp-action="ViewContacts"><i class="bi bi-arrow-left"></i> Volver</a>
+            <button type="submit" class="btn btn-outline-warning col-4">Actualizar contacto <i class="bi bi-pencil-square"></i></button>
+        </div>
+    </form>
+</div>
+
+

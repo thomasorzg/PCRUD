@@ -1,0 +1,42 @@
+﻿@model List<ContactModel>;
+@{
+    ViewData["Title"] = "Contactos registrados";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Contactos registrados <i class="bi bi-person-lines-fill"></i></h1>
+
+<hr />
+
+<a asp-controller="Contact" asp-action="CreateNewContact" class="btn btn-success">Nuevo contacto <i class="bi bi-plus-circle"></i></a>
+
+<div class="py-5 row">
+    @if (Model.Count == 0) {
+        <h3 class="fw-bold col-12 mx-auto text-center text-secondary">¡No se han encontraron registros!</h3>
+        <h5 class="col-12 text-center text-secondary">Registrar <a asp-controller="Contact" asp-action="CreateNewContact">contacto</a></h5>
+    }
+
+    @foreach (ContactModel contact in Model) {
+        <div class="col-3 mb-4">
+            <div class="card">
+                <h4 class="card-header">@contact.Name</h4>
+
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><span class="fw-bold">Número de teléfono:</span> @contact.PhoneNumber</li>
+                        <li class="list-group-item"><span class="fw-bold">Correo electrónico:</span> @contact.Email</li>
+                        <li class="list-group-item"><span class="fw-bold">Clave:</span> @contact.Password</li>
+                    </ul>
+                </div>
+                <div class="card-footer btn-group">
+                    <a asp-controller="Contact" asp-action="UpdateContact" asp-route-contactId="@contact.Id" class="btn btn-warning">
+                        <i class="bi bi-pencil-square"></i> Editar
+                    </a>
+                    <a asp-controller="Contact" asp-action="DeleteContact" asp-route-contactId="@contact.Id" class="btn btn-danger">
+                        Eliminar <i class="bi bi-trash"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

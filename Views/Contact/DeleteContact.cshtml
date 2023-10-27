@@ -1,0 +1,19 @@
+﻿@model MVCPracticaArqdSoft.Models.ContactModel;
+@{
+    ViewData["Title"] = "DeleteContact";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card col-6 mx-auto">
+    <h1 class="card-header"><i class="bi bi-person-dash-fill"></i> Eliminar contacto</h1>
+
+    <div class="card-body">
+        <div class="alert alert-danger">¿Estás seguro/a de eliminar a @Html.DisplayTextFor(m => m.Name)?</div>
+    </div>
+    <form method="post" asp-controller="Contact" asp-action="DeleteContact" class="card-footer d-flex justify-content-between">
+        <input type="hidden" value="@Model.Id" asp-for="Id" />
+        <a type="button" class="btn btn-primary" asp-controller="Contact" asp-action="ViewContacts"><i class="bi bi-arrow-left"></i> Cancelar</a>
+        <button type="submit" class="btn btn-outline-danger">Confirmar <i class="bi bi-person-check"></i></button>
+    </form>
+</div>
+
